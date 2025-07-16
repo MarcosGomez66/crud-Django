@@ -15,7 +15,7 @@ def crear_user(request):
     form = UserForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect(request, 'formulario.html', {'form':form})
+        return redirect('lista')
     return render(request, 'formulario.html', {'form':form})
 
 def editar_user(request, id):
