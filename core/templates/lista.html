@@ -1,0 +1,11 @@
+<h1>Usuarios</h1>
+<a href="{% url 'crear' %}">Nuevo usuario</a>
+<ul>
+    {% for user in users %}
+    <li>
+        {{ user.nombre}} ({{ user.edad }} años)
+        <a href="{% url 'editar' user.id %}">Editar</a>
+        <a href="{% url 'eliminar' user.id %}">Eliminar</a>
+    </li>
+    {% endfor %}
+</ul>
