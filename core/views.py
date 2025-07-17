@@ -53,7 +53,7 @@ def editar_user(request, id):
             return redirect('lista')
     else:
         form = RegistroForm(instance=user)
-    return render(request, 'editar.html', {'form': form, 'user': user})
+    return render(request, 'formulario.html', {'form': form, 'user': user})
 
 @login_required
 def eliminar_user(request, id):
