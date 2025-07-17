@@ -1,9 +1,14 @@
-<h1>Editar {{ user }}</h1>
+{% extends 'base.html' %}
 
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Guardar</button>
-</form>
+{% block title %}Formulario{% endblock %}
 
-<a href="{% url 'lista' %}">Volver</a>
+{% block content %}
+  <h1>Editar {{user}}</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+  </form>
+{% endblock %}
+

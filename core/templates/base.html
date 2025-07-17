@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Mi App{% endblock %}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    nav a {
+      margin-right: 15px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'home' %}">Inicio</a>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'lista' %}">Usuarios</a>
+      <a href="{% url 'logout' %}">Cerrar sesión</a>
+      <span>Hola, {{ user.username }}</span>
+    {% else %}
+      <a href="{% url 'login' %}">Iniciar sesión</a>
+      <a href="{% url 'registro' %}">Registrarse</a>
+    {% endif %}
+  </nav>
+
+  <hr>
+
+  {% block content %}
+  <!-- Aquí se cargará el contenido de cada página -->
+  {% endblock %}
+</body>
+</html>

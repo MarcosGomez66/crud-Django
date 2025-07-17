@@ -32,11 +32,11 @@ def loginView(request):
 @login_required
 def logoutView(request):
     logout(request)
-    return redirect('login')
+    return render(request, 'logout.html')
 
 @login_required
 def home(request):
-    return HttpResponse('Proyecto Django CRUD')
+    return render(request, 'home.html')
 
 @login_required
 def listaUsers(request):
