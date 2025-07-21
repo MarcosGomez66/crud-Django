@@ -1,7 +1,7 @@
 # CRUD con Django
 
 Este proyecto es una aplicacion web basica con Django que permite:
-    - Crear, leer, actualizar y eliminar registro de personas
+    - Registrar, leer, editar y eliminar un usuario
 
 ## Requisitos
     - Python 3.x

@@ -9,13 +9,7 @@
 <p>Nombre de usuario: {{ user.username }}</p>
 <a href="{% url 'editar' %}">Editar perfil</a>
 <a href="{% url 'eliminar' %}">Eliminar cuenta</a>
+<a href="{% url 'cambiar_contrasena' %}">Cambiar contraseña</a>
 <p><a href="{% url 'home' %}">Volver al inicio</a></p>
 
-{% if messages %}
-    <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
 {% endblock %}

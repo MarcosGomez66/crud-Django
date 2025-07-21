@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -39,7 +39,6 @@ def logoutView(request):
     logout(request)
     return render(request, 'logout.html')
 
-@login_required
 def home(request):
     return render(request, 'home.html')
 
@@ -72,3 +71,16 @@ def eliminar_user(request):
         messages.success(request, 'Cuenta eliminada exitosamente.')
         return redirect('lista')
     return render(request, 'eliminar.html', {'user': request.user})
+
+@login_required
+def cambiar_contrasena(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Contraseña cambiada exitosamente.')
+            return redirect('perfil')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'cambiar_passw.html', {'form': form})

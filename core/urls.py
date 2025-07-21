@@ -10,4 +10,5 @@ urlpatterns = [
     path('perfil/', views.perfil, name='perfil'),
     path('perfil/editar/', views.editar_user, name='editar'),
     path('perfil/eliminar/', views.eliminar_user, name='eliminar'),
+    path('perfil/cambiar_contraseña/', views.cambiar_contrasena, name='cambiar_contrasena'),
 ]
