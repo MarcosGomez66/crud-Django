@@ -11,4 +11,6 @@ urlpatterns = [
     path('perfil/editar/', views.editar_user, name='editar'),
     path('perfil/eliminar/', views.eliminar_user, name='eliminar'),
     path('perfil/cambiar_contraseña/', views.cambiar_contrasena, name='cambiar_contrasena'),
+    path('publicacion/', views.publicaciones, name='publicaciones'),
+    path('publicacion/nuevo/', views.crear_publicacion, name='crear_publicacion'),
 ]

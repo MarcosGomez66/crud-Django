@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Publicaciones{% endblock %}
+
+{% block content %}
+<h2>Publicaciones en app web Django</h2>
+<a href="{% url 'crear_publicacion' %}">Crear nueva</a>
+<ul>
+  {% for publi in publicaciones %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+            <strong>{{ publi.autor.username }}</strong><br>
+            <p>{{ publi.titulo }}</p>
+            <p>{{ publi.contenido }}</p>
+            <small>{{ publi.fecha_publicacion|date:"d/m/Y H:i" }}</small>
+        </div>
+    {% empty %}
+        <p>No hay publicaciones aún.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

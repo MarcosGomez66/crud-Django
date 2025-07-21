@@ -5,7 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .forms import RegistroForm
+from .models import Publicacion, Tarea
+from .forms import RegistroForm, PublicacionForm, TareaForm
 
 # Create your views here.
 def registroView(request):
@@ -84,3 +85,23 @@ def cambiar_contrasena(request):
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request, 'cambiar_passw.html', {'form': form})
+
+@login_required
+def publicaciones(request):
+    # ver las publicaciones de todos los usuarios
+    publicaciones = Publicacion.objects.all().order_by('-fecha_publicacion')
+    return render(request, 'publicaciones.html', {'publicaciones': publicaciones})
+
+@login_required
+def crear_publicacion(request):
+    if request.method == 'POST':
+        form = PublicacionForm(request.POST)
+        if form.is_valid():
+            publicacion = form.save(commit=False)
+            publicacion.autor = request.user
+            publicacion.save()
+            messages.success(request, 'Publicación creada exitosamente.')
+            return redirect('home')
+    else:
+        form = PublicacionForm()
+    return render(request, 'crear_publi.html', {'form': form})
