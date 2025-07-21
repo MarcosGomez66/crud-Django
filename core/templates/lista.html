@@ -10,8 +10,8 @@
       <li>
         <p>
           {{ user.username }} ({{ user.email }})
-          <a href="{% url 'editar' user.id %}">Editar</a>
-          <a href="{% url 'eliminar' user.id %}">Eliminar</a>
+          <a href="{% url 'editar' %}">Editar</a>
+          <a href="{% url 'eliminar' %}">Eliminar</a>
           </p>
       </li>
     {% endfor %}
