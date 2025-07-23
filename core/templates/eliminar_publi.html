@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar publicacion{% endblock %}
+
+{% block content %}
+<h2>¿Estás seguro de que querés eliminar esta publicacion?</h2>
+<p><strong>{{ publicacion.titulo }}</strong></p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Sí, eliminar</button>
+  <a href="javascript:history.back()">Cancelar</a>
+</form>
+
+{% endblock %}

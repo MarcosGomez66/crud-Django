@@ -13,4 +13,6 @@ urlpatterns = [
     path('perfil/cambiar_contraseña/', views.cambiar_contrasena, name='cambiar_contrasena'),
     path('publicacion/', views.publicaciones, name='publicaciones'),
     path('publicacion/nuevo/', views.crear_publicacion, name='crear_publicacion'),
+    path('publicacion/editar/<int:pk>/', views.editar_publicacion, name='editar_publicacion'),
+    path('publicacion/eliminar/<int:pk>/', views.eliminar_publicacion, name='eliminar_publicacion'),
 ]

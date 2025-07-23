@@ -58,6 +58,7 @@ def editar_user(request):
         form = RegistroForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            update_session_auth_hash(request, request.user)
             messages.success(request, 'Perfil actualizado exitosamente.')
             return redirect('perfil')
     else:
@@ -105,3 +106,25 @@ def crear_publicacion(request):
     else:
         form = PublicacionForm()
     return render(request, 'crear_publi.html', {'form': form})
+
+@login_required
+def editar_publicacion(request, pk):
+    publicacion = get_object_or_404(Publicacion, pk=pk, autor=request.user)
+    if request.method == 'POST':
+        form = PublicacionForm(request.POST, instance=publicacion)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Publicación actualizada exitosamente.')
+            return redirect('publicaciones')
+    else:
+        form = PublicacionForm(instance=publicacion)
+    return render(request, 'editar_publi.html', {'form': form})
+
+@login_required
+def eliminar_publicacion(request, pk):
+    publicacion = get_object_or_404(Publicacion, pk=pk, autor=request.user)
+    if request.method == 'POST':
+        publicacion.delete()
+        messages.success(request, 'Publicación eliminada exitosamente.')
+        return redirect('publicaciones')
+    return render(request, 'eliminar_publi.html', {'publicacion': publicacion})
