@@ -11,8 +11,8 @@ urlpatterns = [
     path('perfil/editar/', views.editar_user, name='editar'),
     path('perfil/eliminar/', views.eliminar_user, name='eliminar'),
     path('perfil/cambiar_contraseña/', views.cambiar_contrasena, name='cambiar_contrasena'),
-    path('publicacion/', views.publicaciones, name='publicaciones'),
-    path('publicacion/nuevo/', views.crear_publicacion, name='crear_publicacion'),
-    path('publicacion/editar/<int:pk>/', views.editar_publicacion, name='editar_publicacion'),
-    path('publicacion/eliminar/<int:pk>/', views.eliminar_publicacion, name='eliminar_publicacion'),
+    path('publicaciones/', views.publicaciones, name='publicaciones'),
+    path('publicaciones/nuevo/', views.crear_publicacion, name='crear_publicacion'),
+    path('publicaciones/editar/<int:pk>/', views.editar_publicacion, name='editar_publicacion'),
+    path('publicaciones/eliminar/<int:pk>/', views.eliminar_publicacion, name='eliminar_publicacion'),
 ]
