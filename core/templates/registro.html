@@ -1,13 +1,52 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Registro{% endblock %}
 
 {% block content %}
-  <h1>Registro</h1>
-
-  <form method="POST">
+<div class="contenedor">
+  <h1 class="mt-5">Registro</h1>
+  {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      Por favor, corrige los errores en el formulario.
+    </div>
+  {% endif %}
+  <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
+    <div class="row mb-3 mt-5">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label">Nombre de usuario: {{ form.username }}</label>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label">Email: {{ form.email }}</label>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">Contraseña: {{ form.password1 }}</label>
+        <ul>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña debe tener como minimo 8 caracteres</div>
+          </li>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña no puede ser demasiado similar a otra informacion personal</div>
+          </li>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña no puede ser una contraseña de uso común</div>
+          </li>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña no puede ser únicamente numérica</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">Confirmar contraseña: {{ form.password2 }}</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Guardar</button>
   </form>
+</div>
 {% endblock %}

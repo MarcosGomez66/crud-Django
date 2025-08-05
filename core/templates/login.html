@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Iniciar sesión{% endblock %}
 
 {% block content %}
@@ -12,13 +13,12 @@
   <form method="post">
     {% csrf_token %}
     <div class="mb-3 mt-5">
-      <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
-      {{ form.username }}
+      <label for="exampleInputEmail1" class="form-label">Nombre de usuario: {{ form.username }}</label>
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-      {{ form.password }}
+      <label for="exampleInputPassword1" class="form-label">Contraseña: {{ form.password }}</label>
     </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
+    <button type="submit" class="btn btn-outline-primary">Entrar</button>
+  </form>
 </div>
 {% endblock %}

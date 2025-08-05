@@ -3,8 +3,12 @@
 
 {% block content %}
   <div class="contenedor">
-    <h1 class="mt-5 text-center">Bienvenido a la app web</h1>
+    <h1 class="mt-5 text-center">Bienvenido/a a la app web</h1>
     <p class="lead mt-5">Esta es una aplicación de ejemplo para demostrar el uso de Django y Bootstrap.</p>
-    <p class="lead">Usa las pestañas de arriba para iniciar sesion o registrarte</p>
+    {% if user.is_authenticated %}
+      <p class="lead">Hola {{ user.username }}!</p>
+    {% else %}
+      <p class="lead">Usa las pestañas de arriba para iniciar sesion o registrarte</p>
+    {% endif %}
   </div>
 {% endblock %}

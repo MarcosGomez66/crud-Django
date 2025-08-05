@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Perfil({{user.username}}){% endblock %}
 
 {% block content %}
-<h1>
-    Mi perfil
-</h1>
-<p>Nombre de usuario: {{ user.username }}</p>
-<a href="{% url 'editar' %}">Editar perfil</a>
-<a href="{% url 'eliminar' %}">Eliminar cuenta</a>
-<a href="{% url 'cambiar_contrasena' %}">Cambiar contraseña</a>
-<p><a href="{% url 'home' %}">Volver al inicio</a></p>
-
+<div class="contenedor">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h1 class="mt-5">Mi perfil</h1>
+            <p>Nombre de usuario: {{ user.username }}</p>
+            <p>Correo electrónico: {{ user.email }}</p>
+            <p>Fecha de registro: {{ user.date_joined|date:"d/m/Y" }}</p>
+            <div class="row">
+                <div class="col-12 col-sm-4 col-md-12 col-xl-4">
+                    <a href="{% url 'editar' %}" class="btn btn-outline-secondary btn-sm w-100 mt-2">Editar perfil</a>
+                </div>
+                <div class="col-12 col-sm-4 col-md-12 col-xl-4">
+                    <a href="{% url 'eliminar' %}" class="btn btn-outline-danger btn-sm w-100 mt-2">Eliminar cuenta</a>
+                </div>
+                <div class="col-12 col-sm-4 col-md-12 col-xl-4">
+                    <a href="{% url 'cambiar_contrasena' %}" class="btn btn-outline-warning btn-sm w-100 mt-2">Cambiar contraseña</a>
+                </div>
+            </div>
+            <div class="col">
+                <p class="mt-3"><a href="{% url 'home' %}" class="btn btn-outline-primary">Volver al inicio</a></p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 text-center">
+            <img src="{% static 'img/sin-foto.jpg' %}" class="img-thumbnail" alt="sin-foto">
+        </div>
+    </div>
+</div>
 {% endblock %}
