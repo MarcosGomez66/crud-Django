@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Publicacion, Tarea
-from .forms import RegistroForm, PublicacionForm, TareaForm
+from .forms import RegistroForm, PublicacionForm, TareaForm, EditarPerfilForm
 
 # Create your views here.
 def registroView(request):
@@ -55,14 +55,14 @@ def perfil(request):
 @login_required
 def editar_user(request):
     if request.method == 'POST':
-        form = RegistroForm(request.POST, instance=request.user)
+        form = EditarPerfilForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, request.user)
             messages.success(request, 'Perfil actualizado exitosamente.')
             return redirect('perfil')
     else:
-        form = RegistroForm(instance=request.user)
+        form = EditarPerfilForm(instance=request.user)
     return render(request, 'editar.html', {'form': form})
 
 @login_required

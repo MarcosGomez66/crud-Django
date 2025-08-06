@@ -1,12 +1,48 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Cambiar contraseña{% endblock %}
 
 {% block content %}
-<h2>Cambiar contraseña</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Actualizar contraseña</button>
-</form>
+<div class="contenedor">
+  <h1 class="mt-5 display-4">Cambiar contraseña</h1>
+  {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      Por favor, corrige los errores en el formulario.
+    </div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="row mb-3 mt-5">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label">Contraseña actual: {{ form.old_password }}</label>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">Nueva contraseña: {{ form.new_password1 }}</label>
+        <ul>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña debe tener como minimo 8 caracteres</div>
+          </li>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña no puede ser demasiado similar a otra informacion personal</div>
+          </li>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña no puede ser una contraseña de uso común</div>
+          </li>
+          <li>
+            <div id="emailHelp" class="form-text">La contraseña no puede ser únicamente numérica</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputPassword1" class="form-label">Confirmar nueva contraseña: {{ form.new_password2 }}</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Guardar</button>
+    <a href="{% url 'perfil' %}" class="btn btn-outline-secondary">Cancelar</a>
+  </form>
+</div>
 {% endblock %}

@@ -1,26 +1,27 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Publicaciones{% endblock %}
 
 {% block content %}
-<h2>Publicaciones en app web Django</h2>
-<a href="{% url 'crear_publicacion' %}">Crear nueva</a>
-<ul>
-  {% for publi in publicaciones %}
-        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-            <strong>{{ publi.autor.username }}</strong><br>
-            <p>{{ publi.titulo }}</p>
-            <p>{{ publi.contenido }}</p>
-            <small>{{ publi.fecha_publicacion|date:"d/m/Y H:i" }}</small>
-            {% if request.user == publi.autor %}
-                <div>
-                    <a href="{% url 'editar_publicacion' publi.pk %}">Editar</a>
-                    <a href="{% url 'eliminar_publicacion' publi.pk %}">Eliminar</a>
+<div class="contenedor">
+    <h1 class="mt-5 display-4">Publicaciones</h1>
+    <a href="{% url 'crear_publicacion' %}" class="btn btn-outline-primary">Nueva publicacion</a>
+    <ul>
+        {% for publicacion in publicaciones %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ publicacion.titulo }}</h5>
+                    <p class="card-text">{{ publicacion.contenido }}</p>
+                    <p class="card-text"><small class="text-muted">Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_publicacion|date:"d/m/Y H:i" }}</small></p>
+                    {% if request.user == publicacion.autor %}
+                        <a href="{% url 'editar_publicacion' publicacion.pk %}" class="btn btn-outline-secondary">Editar</a>
+                        <a href="{% url 'eliminar_publicacion' publicacion.pk %}" class="btn btn-outline-danger">Eliminar</a>
+                    {% endif %}
                 </div>
-            {% endif %}
-        </div>
-    {% empty %}
-        <p>No hay publicaciones aún.</p>
-    {% endfor %}
-</ul>
+            </div>
+        {% empty %}
+            <li class="list-group-item">No hay publicaciones disponibles.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

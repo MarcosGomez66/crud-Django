@@ -4,7 +4,18 @@
 
 {% block content %}
 <div class="contenedor">
-  <h1>lista</h1>
+  <h1 class="mt-5 display-4">Usuarios registrados</h1>
+  <a href="{% url 'registro' %}" class="btn btn-outline-primary">Registar nuevo usuario</a>
+  <ul class="list-group mt-5">
+    {% for user in users %}
+      <li class="list-group-item">
+        <p>
+          {{ user.username }} ({{ user.email }})
+        </p>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No hay usuarios registrados.</li>
+    {% endfor %}
 </div>
 {% endblock %}
 

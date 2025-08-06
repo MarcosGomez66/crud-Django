@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Editar publicacion{% endblock %}
 
 {% block content %}
-<h2>Editar Publicacion</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Guardar cambios</button>
-</form>
-
+<div class="contenedor">
+  <h1 class="mt-5 display-4">Editar publicación</h1>
+  {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      Error al crear la publicacion, por favor revisa los campos ingresados.
+    </div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3 mt-5">
+      <label for="exampleInputEmail1" class="form-label">Titulo: {{ form.titulo }}</label>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Publicación: {{ form.contenido }}</label>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Guardar</button>
+    <a href="{% url 'publicaciones' %}" class="btn btn-outline-secondary">Cancelar</a>
+  </form>
+</div>
 {% endblock %}

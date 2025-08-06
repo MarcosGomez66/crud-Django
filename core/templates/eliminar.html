@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Eliminar{% endblock %}
 
 {% block content %}
-<h1>¿Eliminar {{ user.username }}?</h1>
-<form method="POST">
-  {% csrf_token %}
-  <button type="submit">Confirmar</button>
+<div class="contenedor">
+  <h1 class="mt-5 display-5">Eliminar {{ user.username }}?</h1>
+  <form method="POST">
+    {% csrf_token %}
+     <button type="submit" class="btn btn-outline-danger">Confirmar</button>
+     <p>Al eliminar la cuenta se perderan todos los datos.</p>
 </form>
-<a href="{% url 'perfil' %}">Cancelar</a>
+<a href="{% url 'home' %}" class="btn btn-outline-secondary mt-3">Cancelar</a>
+</div>
 {% endblock %}

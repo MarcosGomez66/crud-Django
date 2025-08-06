@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Eliminar publicacion{% endblock %}
 
 {% block content %}
-<h2>¿Estás seguro de que querés eliminar esta publicacion?</h2>
-<p><strong>{{ publicacion.titulo }}</strong></p>
-
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Sí, eliminar</button>
-  <a href="javascript:history.back()">Cancelar</a>
+<div class="contenedor">
+  <h1 class="mt-5 display-5">Seguro que desea eliminar esta publicacion?</h1>
+  <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ publicacion.titulo }}</h5>
+                    <p class="card-text">{{ publicacion.contenido }}</p>
+                    <p class="card-text"><small class="text-muted">Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_publicacion|date:"d/m/Y H:i" }}</small></p>
+                </div>
+            </div>
+  <form method="POST">
+    {% csrf_token %}
+     <button type="submit" class="btn btn-outline-danger mt-3">Si, eliminar</button>
+      <a href="javascript:history.back()" class="btn btn-outline-secondary mt-3">Cancelar</a>
 </form>
-
+</div>
 {% endblock %}

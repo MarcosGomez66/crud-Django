@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Cerrar sesión{% endblock %}
 
 {% block content %}
-  <h2>Sesión finalizada</h2>
-  <p>Has cerrado sesión correctamente.</p>
-  <a href="{% url 'login' %}">Volver a iniciar sesión</a>
+<div class="contenedor">
+  <h1 class="mt-5 display-4">Has cerrado sesión correctamente.</h1>
+  <a href="{% url 'login' %}" class="btn btn-outline-primary">Volver a iniciar sesión</a>
+</div>
 {% endblock %}
